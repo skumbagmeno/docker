@@ -1,14 +1,20 @@
+version: '3'
+
 services:
   web:
     image: nginx:latest
     ports:
-      - '80:8080'
+      - 80:80
+      - 443:443
+    restart: always
     volumes:
-      - /var/repos:/var/www/html
-      - ./default.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx/conf:/etc/nginx/conf.d:ro
+      - ./certbot/www:/var/www/certbot:ro
+      - ./nginx/log:/var/log/nginx
+      - /var/repos:/var/www/html:ro
     links:
       - php-fpm
   php-fpm:
     image: php:8-fpm
     volumes:
-      - /var/repos:/var/www/html
+      - /var/repos:/var/www/html:ro
