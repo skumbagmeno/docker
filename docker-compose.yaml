@@ -6,7 +6,7 @@ services:
     ports:
       - 80:80
       - 443:443
-    restart: always
+    restart: always # Per riavvio automatico in caso di crash
     volumes:
       - ./nginx/conf/:/etc/nginx/conf.d/:ro
       - ./certbot/www:/var/www/certbot/:ro
@@ -23,4 +23,4 @@ services:
   php-fpm:
     image: php:8-fpm
     volumes:
-      - /var/repos:/var/www/html:ro
+      - /var/repos:/var/www/html:ro 
