@@ -30,7 +30,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: Skumbagmeno2000
     volumes:
-      - ./database:/docker-entrypoint-initdb.d
+      - ./database:/docker-entrypoint-initdb.d # Per script di inizializzazione
       - mariadb_data:/var/lib/mysql
     ports:
       - "3306:3306"
