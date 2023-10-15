@@ -21,7 +21,9 @@ services:
       - ./certbot/www/:/var/www/certbot/:rw
       - ./certbot/conf/:/etc/letsencrypt/:rw
   php-fpm:
-    image: php:8-fpm
+    build:
+      context: .
+      dockerfile: Dockerfile
     volumes:
       - /var/repos:/var/www/html:ro
   db:
