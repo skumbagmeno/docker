@@ -31,7 +31,7 @@
 
 # Certificati
 ## Nuovo certificato (i path sono quelli specificati nel docker-compose.yaml)
-- docker compose run --rm certbot certonly --webroot --webroot-path /var/www/certbot/ -d <dominio>
+- docker compose run --rm certbot certonly --webroot --webroot-path /var/www/certbot/ -d dominio
 
 ## Rinnovo certificati
 - contab -e -> 0 0 1 * * docker compose run --rm certbot renew
