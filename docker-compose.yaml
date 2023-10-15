@@ -29,6 +29,7 @@ services:
   db:
     image: mariadb:10
     restart: always
+    hostname: mariadb
     environment:
       MYSQL_ROOT_PASSWORD: Skumbagmeno2000
     volumes:
