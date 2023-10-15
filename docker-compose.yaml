@@ -2,17 +2,17 @@ version: '3'
 
 services:
   web:
-    image: nginx:latest
+    image: nginx:1.24.0
     ports:
       - 80:80
       - 443:443
     restart: always # Per riavvio automatico in caso di crash
     volumes:
-      - ./nginx/conf/:/etc/nginx/conf.d/:ro
-      - ./certbot/www:/var/www/certbot/:ro
-      - ./certbot/conf/:/etc/nginx/ssl/:ro
-      - ./nginx/log/:/var/log/nginx:rw
-      - /var/repos:/var/www/html:ro
+      - ./nginx/conf/:/etc/nginx/conf.d/:ro # configurazione di nginx
+      - ./certbot/www:/var/www/certbot/:ro # path per la creazione dei certificati
+      - ./certbot/conf/:/etc/nginx/ssl/:ro # path certificati
+      - ./nginx/log/:/var/log/nginx:rw # log nginx
+      - /var/repos:/var/www/html:ro # path repository
     links:
       - php-fpm
   certbot:
@@ -23,4 +23,16 @@ services:
   php-fpm:
     image: php:8-fpm
     volumes:
-      - /var/repos:/var/www/html:ro 
+      - /var/repos:/var/www/html:ro
+  db:
+    image: mariadb:10
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: Skumbagmeno2000
+    volumes:
+      - ./database:/docker-entrypoint-initdb.d
+      - mariadb_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+volumes:
+  mariadb_data:
