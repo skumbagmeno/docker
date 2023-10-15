@@ -26,7 +26,7 @@ services:
       dockerfile: Dockerfile
     volumes:
       - /var/repos:/var/www/html:ro
-      - ./php/php-fpm.conf:/usr/local/etc/php-fpm.d/:ro
+      - ./php/php-fpm.conf:/usr/local/etc/php-fpm.d/php-fpm.conf:ro
   db:
     image: mariadb:10
     restart: always
