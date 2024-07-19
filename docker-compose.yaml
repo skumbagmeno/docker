@@ -25,14 +25,14 @@ services:
       - ./certbot/conf/:/etc/letsencrypt/:rw
   php-fpm:
     build:
-      context: .
-      dockerfile: php/Dockerfile
+      context: php
+      dockerfile: Dockerfile
     volumes:
       - /var/repos:/var/www/html:ro
   dotnet:
     build:
-      context: .
-      dockerfile: dotnet/Dockerfile
+      context: ..
+      dockerfile: docker/dotnet/Dockerfile
   db:
     image: mariadb:10
     restart: always
