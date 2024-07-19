@@ -31,8 +31,8 @@ services:
       - /var/repos:/var/www/html:ro
   dotnet:
     build:
-      context: .
-      dockerfile: dotnet/Dockerfile
+      context: ./dotnet
+      dockerfile: Dockerfile
   db:
     image: mariadb:10
     restart: always
