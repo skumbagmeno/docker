@@ -30,11 +30,13 @@ services:
     volumes:
       - /var/repos:/var/www/html:ro
   dotnet:
+    depends_on:
+      - web
     build:
       context: ./dotnet
       dockerfile: Dockerfile
     expose:
-      - 5000
+      - "5000"
   db:
     image: mariadb:10
     restart: always
